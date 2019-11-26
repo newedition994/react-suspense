@@ -1,5 +1,16 @@
 import axios from "axios";
 
+export const fetchData = () => {
+  const userPromise = fetchUser();
+  const postsPromise = fetchPosts();
+  return {
+    user: wrapPromise(userPromise),
+    posts: wrapPromise(postsPromise)
+  };
+};
+
+const wrapPromise = promise => {};
+
 const fetchUser = () => {
   console.log("Fetching user...");
   return axios
