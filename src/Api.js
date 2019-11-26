@@ -9,7 +9,31 @@ export const fetchData = () => {
   };
 };
 
-const wrapPromise = promise => {};
+const wrapPromise = promise => {
+  // set initial status
+  let status = "pending";
+  // store result
+  let result;
+  // wait for promise
+  let suspender = promise.then(
+    res => {
+      status = "success";
+      result = res;
+    },
+    err => {
+      status = "error";
+      result = err;
+    }
+  );
+
+  return {
+    read() {
+      if (status === "pending") {
+        throw suspender;
+      }
+    }
+  };
+};
 
 const fetchUser = () => {
   console.log("Fetching user...");
