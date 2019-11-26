@@ -7,7 +7,12 @@ const resource = fetchData();
 
 const App = () => (
   <div className="container my-5">
-    <h1>Hello World</h1>
+    <Suspense fallback={<h1>Loading User...</h1>}>
+      <ProfileDetails />
+    </Suspense>
+    <Suspense fallback={<h1>Loading Posts...</h1>}>
+      <ProfilePosts />
+    </Suspense>
   </div>
 );
 
