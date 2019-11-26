@@ -7,3 +7,11 @@ const fetchUser = () => {
     .then(res => res.data)
     .catch(err => console.log(err));
 };
+
+const fetchPosts = () => {
+  console.log("Fetching Posts...");
+  return axios
+    .get("https://jsonplaceholder.typicode.com/posts?_limit=8")
+    .then(res => res.data)
+    .catch(err => console.log(err));
+};
